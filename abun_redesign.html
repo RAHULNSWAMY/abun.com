@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abun — AI SEO & Content Growth Toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+/* ── Reset & Tokens ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-900: #0f2a6e;
+  --blue-800: #1340a8;
+  --blue-700: #1a56db;
+  --blue-600: #2563eb;
+  --blue-500: #3b82f6;
+  --blue-400: #60a5fa;
+  --blue-100: #dbeafe;
+  --blue-50:  #eff6ff;
+  --ink:      #0a0f1e;
+  --ink-2:    #1e2840;
+  --ink-3:    #374151;
+  --muted:    #6b7280;
+  --line:     #e5e7eb;
+  --white:    #ffffff;
+  --surface:  #f8fafc;
+  --green:    #16a34a;
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+  --shadow-lg: 0 12px 40px rgba(26,86,219,.12), 0 2px 8px rgba(0,0,0,.06);
+  --shadow-blue: 0 8px 32px rgba(26,86,219,.22);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout ──────────────────────────────────────────────────────────── */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+.section    { padding: 96px 0; }
+.section--tight { padding: 64px 0; }
+
+/* ── Nav ─────────────────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 0 32px;
+}
+.nav-inner {
+  max-width: 1120px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 22px;
+  color: var(--ink); text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--blue-700); }
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-size: 14px; font-weight: 500;
+  color: var(--ink-3); text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--blue-700); }
+.nav-cta {
+  display: flex; align-items: center; gap: 12px;
+}
+.btn-ghost {
+  font-family: var(--font-body); font-size: 14px; font-weight: 500;
+  color: var(--ink-3); background: none; border: none;
+  cursor: pointer; padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  transition: color .2s, background .2s;
+}
+.btn-ghost:hover { color: var(--blue-700); background: var(--blue-50); }
+.btn-primary {
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  color: var(--white); background: var(--blue-700);
+  border: none; cursor: pointer;
+  padding: 10px 22px; border-radius: var(--radius-md);
+  box-shadow: var(--shadow-blue);
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn-primary:hover {
+  background: var(--blue-800);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 40px rgba(26,86,219,.3);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* ── Hero ────────────────────────────────────────────────────────────── */
+.hero {
+  padding: 80px 0 72px;
+  background: linear-gradient(160deg, #f0f7ff 0%, #ffffff 55%, #f8fafc 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -200px; right: -200px;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 32px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue-50); border: 1px solid var(--blue-100);
+  color: var(--blue-700); font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 0.6px;
+  margin-bottom: 24px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue-500); display: block;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 54px);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -1.5px; color: var(--ink);
+  margin-bottom: 20px;
+}
+.hero-title em {
+  font-style: normal; color: var(--blue-700);
+  position: relative;
+}
+.hero-title em::after {
+  content: '';
+  position: absolute; bottom: 2px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue-500), var(--blue-400));
+  border-radius: 2px; opacity: .5;
+}
+.hero-sub {
+  font-size: 18px; font-weight: 300; color: var(--ink-3);
+  line-height: 1.65; margin-bottom: 36px; max-width: 480px;
+}
+.hero-actions {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+}
+.btn-hero {
+  font-family: var(--font-body); font-size: 16px; font-weight: 600;
+  color: var(--white); background: var(--blue-700);
+  border: none; cursor: pointer;
+  padding: 15px 32px; border-radius: var(--radius-md);
+  box-shadow: var(--shadow-blue);
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn-hero:hover {
+  background: var(--blue-800); transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(26,86,219,.32);
+}
+.btn-hero-ghost {
+  font-family: var(--font-body); font-size: 15px; font-weight: 500;
+  color: var(--blue-700); background: none;
+  border: 1.5px solid var(--blue-200, #bfdbfe); cursor: pointer;
+  padding: 14px 28px; border-radius: var(--radius-md);
+  transition: background .2s, border-color .2s;
+}
+.btn-hero-ghost:hover { background: var(--blue-50); border-color: var(--blue-400); }
+.hero-trust {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--muted);
+}
+.hero-trust::before {
+  content: '✓'; color: var(--green);
+  font-weight: 700; font-size: 13px;
+}
+
+/* ── Hero Widget ─────────────────────────────────────────────────────── */
+.hero-visual {
+  position: relative;
+}
+.widget-card {
+  background: var(--white); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(26,86,219,.08);
+  padding: 28px; position: relative;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.widget-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+}
+.widget-icon {
+  width: 36px; height: 36px; background: var(--blue-50);
+  border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.widget-title {
+  font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--ink);
+}
+.widget-sub { font-size: 12px; color: var(--muted); }
+.widget-input {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1.5px solid var(--line);
+  border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 20px;
+}
+.widget-input-icon { font-size: 16px; color: var(--muted); }
+.widget-input-text { font-size: 14px; color: var(--muted); flex: 1; }
+.widget-input-btn {
+  background: var(--blue-700); color: var(--white);
+  font-size: 12px; font-weight: 600; font-family: var(--font-body);
+  border: none; border-radius: var(--radius-sm);
+  padding: 6px 14px; cursor: pointer;
+}
+.widget-output {
+  background: linear-gradient(135deg, var(--blue-50), #f0f7ff);
+  border-radius: var(--radius-md); padding: 16px;
+  border: 1px solid var(--blue-100);
+}
+.widget-output-label {
+  font-size: 11px; font-weight: 700; color: var(--blue-700);
+  text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;
+}
+.widget-output-text {
+  font-size: 13px; color: var(--ink-3); line-height: 1.6; margin-bottom: 14px;
+}
+.widget-meta {
+  display: flex; gap: 12px;
+}
+.widget-badge {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: 100px; padding: 4px 10px;
+  font-size: 11px; font-weight: 500; color: var(--ink-3);
+}
+.widget-badge.green { color: var(--green); border-color: #bbf7d0; background: #f0fdf4; }
+.widget-float {
+  position: absolute; right: -20px; top: 40px;
+  background: var(--white); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md); padding: 12px 16px;
+  border: 1px solid var(--line);
+  font-size: 12px; font-weight: 600; color: var(--ink);
+  animation: float 4s ease-in-out infinite reverse;
+}
+.widget-float span { color: var(--blue-700); font-size: 18px; font-weight: 800; display: block; }
+
+/* ── Proof Bar ───────────────────────────────────────────────────────── */
+.proof-bar {
+  background: var(--ink);
+  padding: 20px 0;
+}
+.proof-bar-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.proof-stat {
+  display: flex; align-items: center; gap: 12px;
+}
+.proof-stat-num {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800;
+  color: var(--white);
+}
+.proof-stat-label { font-size: 13px; color: rgba(255,255,255,.5); }
+.proof-divider { width: 1px; height: 32px; background: rgba(255,255,255,.12); }
+.proof-logos {
+  display: flex; align-items: center; gap: 20px;
+}
+.proof-logos-label { font-size: 12px; color: rgba(255,255,255,.4); white-space: nowrap; }
+.logo-pill {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7);
+}
+
+/* ── Features ────────────────────────────────────────────────────────── */
+.features-eyebrow {
+  text-align: center; font-size: 12px; font-weight: 700;
+  color: var(--blue-700); text-transform: uppercase; letter-spacing: 0.8px;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -1px; color: var(--ink);
+  text-align: center; margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 17px; color: var(--muted); text-align: center;
+  max-width: 520px; margin: 0 auto 56px;
+  font-weight: 300; line-height: 1.65;
+}
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.feature-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 28px;
+  transition: box-shadow .25s, transform .25s, border-color .25s;
+}
+.feature-card:hover {
+  box-shadow: var(--shadow-lg); transform: translateY(-4px);
+  border-color: var(--blue-200, #bfdbfe);
+}
+.feature-icon {
+  width: 48px; height: 48px; background: var(--blue-50);
+  border-radius: var(--radius-md); display: flex; align-items: center;
+  justify-content: center; font-size: 22px; margin-bottom: 18px;
+}
+.feature-name {
+  font-family: var(--font-display); font-weight: 700; font-size: 17px;
+  color: var(--ink); margin-bottom: 10px; letter-spacing: -0.3px;
+}
+.feature-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+.features-cta { text-align: center; margin-top: 40px; }
+.btn-outline {
+  font-family: var(--font-body); font-size: 15px; font-weight: 500;
+  color: var(--blue-700); background: var(--white);
+  border: 1.5px solid var(--blue-200, #bfdbfe); cursor: pointer;
+  padding: 12px 28px; border-radius: var(--radius-md);
+  transition: background .2s, border-color .2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-outline:hover { background: var(--blue-50); border-color: var(--blue-400); }
+
+/* ── Advantage ───────────────────────────────────────────────────────── */
+.advantage { background: var(--surface); }
+.advantage-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.advantage-left .section-title,
+.advantage-left .section-sub { text-align: left; margin-left: 0; }
+.tags-grid {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px;
+}
+.tag {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 9px 16px;
+  font-size: 13px; font-weight: 500; color: var(--ink-3);
+  transition: background .2s, border-color .2s, color .2s;
+}
+.tag:hover { background: var(--blue-50); border-color: var(--blue-300, #93c5fd); color: var(--blue-700); }
+.tag.highlight { background: var(--blue-50); border-color: var(--blue-200, #bfdbfe); color: var(--blue-700); }
+.advantage-right {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.adv-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius-md); padding: 22px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.adv-card:hover { box-shadow: var(--shadow-md); border-color: var(--blue-200, #bfdbfe); }
+.adv-card-num {
+  font-family: var(--font-display); font-size: 28px; font-weight: 800;
+  color: var(--blue-700); margin-bottom: 4px;
+}
+.adv-card-label { font-size: 13px; color: var(--muted); line-height: 1.4; }
+.advantage-cta { display: flex; gap: 14px; margin-top: 32px; }
+
+/* ── Testimonials ────────────────────────────────────────────────────── */
+.testimonials-header { text-align: center; margin-bottom: 56px; }
+.testimonials-count {
+  font-size: 14px; color: var(--muted); margin-top: 8px;
+}
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.testi-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 28px;
+  display: flex; flex-direction: column;
+  transition: box-shadow .25s, transform .25s;
+}
+.testi-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.testi-card.featured {
+  background: var(--blue-700); border-color: var(--blue-700);
+}
+.testi-stars { color: #f59e0b; font-size: 14px; margin-bottom: 16px; }
+.testi-quote {
+  font-size: 15px; font-weight: 500; color: var(--ink);
+  line-height: 1.6; margin-bottom: 20px; flex: 1;
+  font-style: italic;
+}
+.testi-card.featured .testi-quote { color: rgba(255,255,255,.9); }
+.testi-profile {
+  display: flex; align-items: center; gap: 12px;
+  padding-top: 20px; border-top: 1px solid var(--line);
+}
+.testi-card.featured .testi-profile { border-color: rgba(255,255,255,.2); }
+.testi-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--blue-100); display: flex; align-items: center;
+  justify-content: center; font-size: 16px; font-weight: 700;
+  color: var(--blue-700); flex-shrink: 0; font-family: var(--font-display);
+  overflow: hidden;
+}
+.testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.testi-name {
+  font-weight: 600; font-size: 14px; color: var(--ink); line-height: 1.3;
+}
+.testi-card.featured .testi-name { color: var(--white); }
+.testi-meta { font-size: 12px; color: var(--muted); }
+.testi-card.featured .testi-meta { color: rgba(255,255,255,.6); }
+.testi-tags {
+  display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap;
+}
+.testi-tag {
+  font-size: 11px; font-weight: 500; padding: 3px 10px;
+  border-radius: 100px; background: var(--blue-50);
+  color: var(--blue-700); border: 1px solid var(--blue-100);
+}
+.testi-card.featured .testi-tag {
+  background: rgba(255,255,255,.15); color: var(--white);
+  border-color: rgba(255,255,255,.2);
+}
+
+/* ── Pricing ─────────────────────────────────────────────────────────── */
+.pricing { background: var(--surface); }
+.pricing-toggle {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin-bottom: 48px;
+}
+.toggle-track {
+  width: 52px; height: 28px; background: var(--blue-700);
+  border-radius: 100px; position: relative; cursor: pointer;
+  transition: background .2s;
+}
+.toggle-thumb {
+  width: 20px; height: 20px; background: var(--white);
+  border-radius: 50%; position: absolute; top: 4px; left: 4px;
+  transition: transform .2s;
+}
+.toggle-label { font-size: 14px; font-weight: 500; color: var(--ink-3); }
+.toggle-save {
+  background: #dcfce7; color: var(--green);
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 100px;
+}
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  align-items: start;
+}
+.plan-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius-xl); padding: 32px;
+  position: relative; transition: box-shadow .25s, transform .25s;
+}
+.plan-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.plan-card.popular {
+  border-color: var(--blue-700);
+  box-shadow: 0 0 0 1px var(--blue-700), var(--shadow-lg);
+}
+.plan-popular-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--blue-700); color: var(--white);
+  font-size: 11px; font-weight: 700; padding: 5px 16px;
+  border-radius: 100px; white-space: nowrap;
+}
+.plan-name {
+  font-family: var(--font-display); font-size: 20px; font-weight: 800;
+  color: var(--ink); margin-bottom: 8px;
+}
+.plan-desc { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+.plan-price {
+  display: flex; align-items: baseline; gap: 4px; margin-bottom: 28px;
+}
+.plan-price-num {
+  font-family: var(--font-display); font-size: 42px; font-weight: 800;
+  color: var(--ink); letter-spacing: -1px;
+}
+.plan-price-per { font-size: 14px; color: var(--muted); }
+.plan-divider { height: 1px; background: var(--line); margin-bottom: 24px; }
+.plan-features { list-style: none; margin-bottom: 32px; }
+.plan-features li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--ink-3); padding: 7px 0;
+  border-bottom: 1px solid var(--surface);
+}
+.plan-features li:last-child { border: none; }
+.plan-check { color: var(--blue-700); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.plan-unlimited {
+  background: #fef3c7; color: #92400e;
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 100px; margin-left: auto; white-space: nowrap;
+}
+.btn-plan {
+  width: 100%; font-family: var(--font-body); font-size: 15px; font-weight: 600;
+  border-radius: var(--radius-md); padding: 14px; cursor: pointer;
+  transition: background .2s, transform .15s; border: none;
+}
+.btn-plan-outline {
+  background: var(--white); color: var(--blue-700);
+  border: 1.5px solid var(--blue-200, #bfdbfe);
+}
+.btn-plan-outline:hover { background: var(--blue-50); }
+.btn-plan-primary { background: var(--blue-700); color: var(--white); box-shadow: var(--shadow-blue); }
+.btn-plan-primary:hover { background: var(--blue-800); transform: translateY(-1px); }
+.pricing-note { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
+
+/* ── Integrations ────────────────────────────────────────────────────── */
+.integrations-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px;
+}
+.integration-block {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 28px;
+}
+.integration-block-title {
+  font-family: var(--font-display); font-weight: 700; font-size: 18px;
+  color: var(--ink); margin-bottom: 8px;
+}
+.integration-block-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.logo-row {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.logo-chip {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 6px 14px;
+  font-size: 12px; font-weight: 600; color: var(--ink-3);
+  transition: background .2s, border-color .2s;
+}
+.logo-chip:hover { background: var(--blue-50); border-color: var(--blue-200, #bfdbfe); color: var(--blue-700); }
+.integration-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px; font-size: 13px; font-weight: 600;
+  color: var(--blue-700); text-decoration: none;
+}
+.integration-link:hover { text-decoration: underline; }
+
+/* ── FAQ ─────────────────────────────────────────────────────────────── */
+.faq-list { max-width: 720px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid var(--line); overflow: hidden;
+}
+.faq-question {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0; text-align: left; background: none; border: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--ink);
+  transition: color .2s;
+}
+.faq-question:hover { color: var(--blue-700); }
+.faq-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--surface); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 300; flex-shrink: 0;
+  transition: background .2s, transform .3s;
+}
+.faq-item.open .faq-icon { background: var(--blue-50); transform: rotate(45deg); color: var(--blue-700); }
+.faq-answer {
+  font-size: 15px; color: var(--muted); line-height: 1.7;
+  max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease;
+  padding: 0;
+}
+.faq-item.open .faq-answer { max-height: 200px; padding-bottom: 20px; }
+
+/* ── CTA Banner ──────────────────────────────────────────────────────── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--blue-800) 0%, var(--blue-700) 50%, var(--blue-600) 100%);
+  padding: 80px 0; position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+}
+.cta-inner { text-align: center; position: relative; z-index: 1; }
+.cta-title {
+  font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 800; color: var(--white); letter-spacing: -1px;
+  margin-bottom: 16px; line-height: 1.15;
+}
+.cta-sub { font-size: 17px; color: rgba(255,255,255,.75); margin-bottom: 36px; font-weight: 300; }
+.cta-actions { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.btn-cta-white {
+  font-family: var(--font-body); font-size: 16px; font-weight: 600;
+  color: var(--blue-700); background: var(--white);
+  border: none; cursor: pointer; padding: 15px 32px;
+  border-radius: var(--radius-md); box-shadow: 0 4px 20px rgba(0,0,0,.15);
+  transition: transform .15s, box-shadow .2s;
+}
+.btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,.2); }
+.btn-cta-ghost {
+  font-family: var(--font-body); font-size: 15px; font-weight: 500;
+  color: rgba(255,255,255,.85); background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.25); cursor: pointer;
+  padding: 14px 28px; border-radius: var(--radius-md);
+  transition: background .2s;
+}
+.btn-cta-ghost:hover { background: rgba(255,255,255,.18); }
+.cta-trust { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,.5); }
+.cta-stars { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 12px; }
+.cta-stars-text { font-size: 13px; color: rgba(255,255,255,.7); }
+.star-row { color: #f59e0b; font-size: 15px; }
+.works-with {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-top: 28px;
+}
+.works-with-label { font-size: 12px; color: rgba(255,255,255,.4); }
+.works-with-logo {
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--radius-sm); padding: 6px 14px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
+footer {
+  background: var(--ink); padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand-name {
+  font-family: var(--font-display); font-weight: 800; font-size: 20px;
+  color: var(--white); margin-bottom: 10px;
+}
+.footer-brand-name span { color: var(--blue-400); }
+.footer-tagline { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.6; max-width: 240px; margin-bottom: 20px; }
+.footer-socials { display: flex; gap: 10px; margin-bottom: 24px; }
+.social-icon {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: rgba(255,255,255,.6); cursor: pointer;
+  transition: background .2s; text-decoration: none;
+}
+.social-icon:hover { background: rgba(255,255,255,.14); color: var(--white); }
+.trust-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+.trust-badge {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-sm); padding: 6px 12px;
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,.5);
+}
+.footer-col-title {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,.3);
+  text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 16px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  font-size: 14px; color: rgba(255,255,255,.55); text-decoration: none;
+  transition: color .2s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08); padding-top: 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-bottom-left { font-size: 13px; color: rgba(255,255,255,.3); }
+.footer-bottom-links { display: flex; gap: 24px; }
+.footer-bottom-links a {
+  font-size: 13px; color: rgba(255,255,255,.3); text-decoration: none;
+  transition: color .2s;
+}
+.footer-bottom-links a:hover { color: rgba(255,255,255,.6); }
+
+/* ── Animations ──────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp .6s ease forwards; }
+.fade-up-1 { animation-delay: .1s; opacity: 0; }
+.fade-up-2 { animation-delay: .2s; opacity: 0; }
+.fade-up-3 { animation-delay: .3s; opacity: 0; }
+.fade-up-4 { animation-delay: .4s; opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">ab<span>u</span>n</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn-ghost">Log in</button>
+      <button class="btn-primary">Start Writing Now</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow fade-up fade-up-1">AI SEO & Growth Toolkit</div>
+      <h1 class="hero-title fade-up fade-up-2">
+        Publish <em>10x more</em><br/>SEO content —<br/>without the grind.
+      </h1>
+      <p class="hero-sub fade-up fade-up-3">
+        Abun researches keywords, writes optimised articles, and keeps your content
+        fresh as search trends evolve. All in one place.
+      </p>
+      <div class="hero-actions fade-up fade-up-4">
+        <button class="btn-hero">Start Free — No Card Needed</button>
+        <button class="btn-hero-ghost">See it in action →</button>
+      </div>
+      <div class="hero-trust fade-up fade-up-4">
+        Free forever plan · No credit card required · 25+ tools included
+      </div>
+    </div>
+    <div class="hero-visual fade-up fade-up-3">
+      <div class="widget-card">
+        <div class="widget-header">
+          <div class="widget-icon">✍️</div>
+          <div>
+            <div class="widget-title">AI Content Generator</div>
+            <div class="widget-sub">SEO-optimised in seconds</div>
+          </div>
+        </div>
+        <div class="widget-input">
+          <span class="widget-input-icon">🔍</span>
+          <span class="widget-input-text">content marketing strategy 2025</span>
+          <button class="widget-input-btn">Generate →</button>
+        </div>
+        <div class="widget-output">
+          <div class="widget-output-label">AI Generated Intro</div>
+          <div class="widget-output-text">Content marketing is a powerful driver of organic growth — but only when built on the right keyword strategy. In 2025, the brands winning search are those who...</div>
+          <div class="widget-meta">
+            <div class="widget-badge">📄 245 Words</div>
+            <div class="widget-badge">🕒 1.8 min</div>
+            <div class="widget-badge green">✅ SEO Score: 94</div>
+          </div>
+        </div>
+        <div class="widget-float">
+          <span>2.6B+</span>
+          Words generated
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROOF BAR ──────────────────────────────────────────────────────── -->
+<div class="proof-bar">
+  <div class="proof-bar-inner">
+    <div class="proof-stat">
+      <div class="proof-stat-num">2,673,000,000</div>
+      <div class="proof-stat-label">Words generated with Abun</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">5,000+</div>
+      <div class="proof-stat-label">Active users worldwide</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">25+</div>
+      <div class="proof-stat-label">AI tools in one platform</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-logos">
+      <span class="proof-logos-label">Trusted by teams at</span>
+      <span class="logo-pill">inside</span>
+      <span class="logo-pill">JETTING</span>
+      <span class="logo-pill">GrowMeOrganic</span>
+      <span class="logo-pill">TiTech</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES ───────────────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="features-eyebrow">AI SEO & Marketing Tools</div>
+    <h2 class="section-title">Everything you need to scale content</h2>
+    <p class="section-sub">Research keywords, create articles, fix SEO errors, and publish — all without switching tabs.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <div class="feature-name">AI Content Generator</div>
+        <p class="feature-desc">Turn a keyword into a complete, SEO-optimised article in under 2 minutes. No prompting required.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-name">Smart Keyword Research</div>
+        <p class="feature-desc">Find keywords your competitors are missing — with search volume, difficulty score, and SERP analysis.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-name">Ready-to-Use Templates</div>
+        <p class="feature-desc">Industry-specific article templates so you never start from a blank page again.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-name">Continuous Optimisation</div>
+        <p class="feature-desc">Your content stays fresh — Abun automatically flags and updates articles as search trends shift.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <div class="feature-name">Fix SEO Errors Automatically</div>
+        <p class="feature-desc">Technical SEO issues identified and resolved without needing to touch code or hire a developer.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <div class="feature-name">Content Calendar</div>
+        <p class="feature-desc">Plan, schedule, and publish consistently. Never miss a week of content again.</p>
+      </div>
+    </div>
+    <div class="features-cta">
+      <button class="btn-outline">See all 25+ features →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── ADVANTAGE ──────────────────────────────────────────────────────── -->
+<section class="section advantage">
+  <div class="container">
+    <div class="advantage-grid">
+      <div class="advantage-left">
+        <div class="features-eyebrow" style="text-align:left">Your unfair advantage</div>
+        <h2 class="section-title" style="text-align:left">Built for scale.<br/>Priced for growth.</h2>
+        <p class="section-sub" style="text-align:left;margin-left:0">Experience real, guaranteed growth in 30 days — or we'll help you get there.</p>
+        <div class="tags-grid">
+          <span class="tag highlight">25+ Tools</span>
+          <span class="tag">Zero Setup Time</span>
+          <span class="tag">No Learning Curve</span>
+          <span class="tag highlight">All-in-One Pricing</span>
+          <span class="tag">Community Driven</span>
+          <span class="tag">Privacy First</span>
+          <span class="tag">New Tools Monthly</span>
+          <span class="tag highlight">Enterprise Security</span>
+          <span class="tag">Transparent Pricing</span>
+          <span class="tag">Great Support</span>
+        </div>
+        <div class="advantage-cta">
+          <button class="btn-hero">Claim free account</button>
+          <button class="btn-outline">Explore features →</button>
+        </div>
+      </div>
+      <div class="advantage-right">
+        <div class="adv-card">
+          <div class="adv-card-num">25+</div>
+          <div class="adv-card-label">AI tools in a single dashboard</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-card-num">0</div>
+          <div class="adv-card-label">Minutes to set up and start</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-card-num">30</div>
+          <div class="adv-card-label">Days to see real growth</div>
+        </div>
+        <div class="adv-card">
+          <div class="adv-card-num">∞</div>
+          <div class="adv-card-label">Languages supported</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTEGRATIONS ───────────────────────────────────────────────────── -->
+<section class="section--tight section">
+  <div class="container">
+    <h2 class="section-title">Works with your entire stack</h2>
+    <p class="section-sub">Plug Abun into the tools you already use. No complex setup, no developer needed.</p>
+    <div class="integrations-grid">
+      <div class="integration-block">
+        <div class="integration-block-title">AI Models & Infrastructure</div>
+        <div class="integration-block-sub">Powered by the best AI models available.</div>
+        <div class="logo-row">
+          <span class="logo-chip">Claude</span>
+          <span class="logo-chip">OpenAI</span>
+          <span class="logo-chip">Groq</span>
+          <span class="logo-chip">AWS</span>
+          <span class="logo-chip">LangChain</span>
+          <span class="logo-chip">CrewAI</span>
+          <span class="logo-chip">FLUX</span>
+        </div>
+        <a href="#" class="integration-link">View all AI integrations →</a>
+      </div>
+      <div class="integration-block">
+        <div class="integration-block-title">Publishing Platforms</div>
+        <div class="integration-block-sub">Publish directly from Abun to your CMS.</div>
+        <div class="logo-row">
+          <span class="logo-chip">WordPress</span>
+          <span class="logo-chip">Webflow</span>
+          <span class="logo-chip">Ghost</span>
+          <span class="logo-chip">Shopify</span>
+          <span class="logo-chip">Wix</span>
+          <span class="logo-chip">Google Search Console</span>
+        </div>
+        <a href="#" class="integration-link">View all platform integrations →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────────────────────────── -->
+<section class="section" style="background: var(--surface)">
+  <div class="container">
+    <div class="testimonials-header">
+      <h2 class="section-title">Loved by writers, marketers & teams</h2>
+      <div class="testimonials-count">Over 5,000+ satisfied users and growing</div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"Great tool with multi-language support. It helped me draft and polish articles quickly, and the Ghost blog export worked flawlessly."</div>
+        <div class="testi-profile">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Armands Latkovskis</div>
+            <div class="testi-meta">Content Creator · US</div>
+          </div>
+        </div>
+        <div class="testi-tags">
+          <span class="testi-tag">🌐 Ghost CMS</span>
+          <span class="testi-tag">🌏 Multilingual</span>
+        </div>
+      </div>
+      <div class="testi-card featured">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"One of my top tools for long-form content. It's intuitive, well structured, and feature-rich. Saves me hours every week!"</div>
+        <div class="testi-profile">
+          <div class="testi-avatar">J</div>
+          <div>
+            <div class="testi-name">Johnny V.</div>
+            <div class="testi-meta">SEO Manager · UK</div>
+          </div>
+        </div>
+        <div class="testi-tags">
+          <span class="testi-tag">📝 Long-form Content</span>
+          <span class="testi-tag">🚀 Pro Plan</span>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"Everything works perfectly. I faced issues with non-English content in other tools, but Abun handled it brilliantly. No regrets!"</div>
+        <div class="testi-profile">
+          <div class="testi-avatar">F</div>
+          <div>
+            <div class="testi-name">Foxenxomi</div>
+            <div class="testi-meta">Blogger · SL</div>
+          </div>
+        </div>
+        <div class="testi-tags">
+          <span class="testi-tag">🌍 Multilingual</span>
+          <span class="testi-tag">🚀 Pro Plan User</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ────────────────────────────────────────────────────────── -->
+<section class="section pricing" id="pricing">
+  <div class="container">
+    <h2 class="section-title">Simple, transparent pricing</h2>
+    <p class="section-sub">Start free. Scale when you're ready. No hidden fees, ever.</p>
+    <div class="pricing-toggle">
+      <span class="toggle-label">Monthly</span>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <span class="toggle-label">Annual</span>
+      <span class="toggle-save">Save 20%</span>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-name">Seed</div>
+        <div class="plan-desc">Perfect for individuals getting started</div>
+        <div class="plan-price">
+          <div class="plan-price-num">$12</div>
+          <div class="plan-price-per">/month</div>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 10 AI Articles / month</li>
+          <li><span class="plan-check">✓</span> 1,000 Keyword Research Credits</li>
+          <li><span class="plan-check">✓</span> 2 Connected Sites</li>
+          <li><span class="plan-check">✓</span> Access to All Tools</li>
+          <li><span class="plan-check">✓</span> All Integrations</li>
+          <li><span class="plan-check">✓</span> 2 Blog Automations</li>
+        </ul>
+        <button class="btn-plan btn-plan-outline">Get Started Free</button>
+      </div>
+      <div class="plan-card popular">
+        <div class="plan-popular-badge">Most Popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-desc">For teams serious about content marketing</div>
+        <div class="plan-price">
+          <div class="plan-price-num">$49</div>
+          <div class="plan-price-per">/month</div>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 100 AI Articles / month</li>
+          <li><span class="plan-check">✓</span> 6,000 Keyword Research Credits</li>
+          <li><span class="plan-check">✓</span> 15 Connected Sites</li>
+          <li><span class="plan-check">✓</span> Access to All Tools</li>
+          <li><span class="plan-check">✓</span> All Integrations</li>
+          <li><span class="plan-check">✓</span> 10 Blog Automations <span class="plan-unlimited">Unlimited soon</span></li>
+        </ul>
+        <button class="btn-plan btn-plan-primary">Choose Growth Plan</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Scale</div>
+        <div class="plan-desc">Unlimited everything for power users</div>
+        <div class="plan-price">
+          <div class="plan-price-num">$99</div>
+          <div class="plan-price-per">/month</div>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 500 AI Articles / month</li>
+          <li><span class="plan-check">✓</span> 20,000 Keyword Research Credits</li>
+          <li><span class="plan-check">✓</span> Unlimited Sites <span class="plan-unlimited">Unlimited</span></li>
+          <li><span class="plan-check">✓</span> Access to All Tools</li>
+          <li><span class="plan-check">✓</span> All Integrations</li>
+          <li><span class="plan-check">✓</span> Unlimited Blog Automations <span class="plan-unlimited">Unlimited</span></li>
+        </ul>
+        <button class="btn-plan btn-plan-outline">Choose Scale Plan</button>
+      </div>
+    </div>
+    <div class="pricing-note">✓ No credit card required to start &nbsp;·&nbsp; ✓ Cancel anytime &nbsp;·&nbsp; ✓ 14-day money-back guarantee</div>
+  </div>
+</section>
+
+<!-- ── FAQ ────────────────────────────────────────────────────────────── -->
+<section class="section" id="faq">
+  <div class="container">
+    <h2 class="section-title">Got questions?</h2>
+    <p class="section-sub">Everything you need to know before you start.</p>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-question">
+          Is content created by Abun original?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Yes — all content generated by Abun is original and uniquely created using AI. Each article is generated fresh based on your keyword, tone, and target audience. We do not recycle or reuse content across users.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Does Abun require technical expertise to use?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Not at all. Abun is designed for marketers, founders, and content teams — not developers. If you can type a keyword, you can use Abun. Setup takes under 5 minutes with zero configuration required.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Is the generated content optimised for SEO?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Yes. Every article is generated with SEO best practices built in — proper heading structure, keyword placement, meta descriptions, and readability scoring. Abun also monitors SERP changes and suggests updates to keep your content competitive.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Will Google penalise AI-written content?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">Google's guidelines focus on content quality and helpfulness, not the tool used to create it. Abun is designed to produce content that meets Google's helpful content standards. Thousands of Abun users rank successfully on Google today.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How is Abun better than ChatGPT?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">ChatGPT is a general-purpose AI. Abun is purpose-built for SEO content at scale — with keyword research, competitor analysis, content scheduling, CMS integrations, and automatic updates all built in. No prompting expertise needed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ─────────────────────────────────────────────────────── -->
+<section class="cta-banner">
+  <div class="container cta-inner">
+    <div class="cta-stars">
+      <span class="star-row">★★★★★</span>
+      <span class="cta-stars-text">"biggest value bomb my entire team can't stop using it"</span>
+    </div>
+    <h2 class="cta-title">The secret tool used by<br/>SEO & growth marketing experts.</h2>
+    <p class="cta-sub">Scale your sales & marketing with AI tools that give you an unfair advantage.</p>
+    <div class="cta-actions">
+      <button class="btn-cta-white">Start Free Today</button>
+      <button class="btn-cta-ghost">Explore all features →</button>
+    </div>
+    <div class="cta-trust">No credit card required · Free forever plan available</div>
+    <div class="works-with">
+      <span class="works-with-label">Works with:</span>
+      <span class="works-with-logo">Webflow</span>
+      <span class="works-with-logo">Google</span>
+      <span class="works-with-logo">WIX</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">ab<span>u</span>n</div>
+        <div class="footer-tagline">The AI-powered content writer that grows your business.</div>
+        <div class="footer-socials">
+          <a href="#" class="social-icon">in</a>
+          <a href="#" class="social-icon">𝕏</a>
+          <a href="#" class="social-icon">▶</a>
+        </div>
+        <div class="trust-badges">
+          <span class="trust-badge">🏆 Microsoft for Startups</span>
+          <span class="trust-badge">🟢 NVIDIA Inception</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links">
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Knowledge Base</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Free Mini AI Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Email Founders</a></li>
+          <li><a href="#">Affiliate Program</a></li>
+          <li><a href="#">Free Backlink Guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Other Products</div>
+        <ul class="footer-links">
+          <li><a href="#">Deliveryman.ai</a></li>
+          <li><a href="#">Draftss.com</a></li>
+          <li><a href="#">ClientPortalOS.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2025 Abun. All Rights Reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
